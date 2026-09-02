@@ -10,6 +10,7 @@ import {
   Tradeoffs,
 } from '../components/Prose.jsx'
 import BurnOnSubmit from '../components/figures/BurnOnSubmit.jsx'
+import FormEngine from '../components/figures/FormEngine.jsx'
 import RoleMatrix from '../components/figures/RoleMatrix.jsx'
 import SchemaGraph from '../components/figures/SchemaGraph.jsx'
 import StampedWeights from '../components/figures/StampedWeights.jsx'
@@ -189,10 +190,57 @@ export default function BrandKob() {
         </Figure>
         <P>
           The renderer walks this structure and knows nothing about tailoring. Adding a
-          garment type is inserting rows. The trade is real — you give up compile-time
-          safety on form shape and you take on a validation layer of your own — but for a
-          system whose entire job is to change frequently, configuring data beats
-          shipping code.
+          garment type is inserting rows. Below is that idea running: the rows on the
+          left are the entire form definition, and the form on the right is what the
+          renderer produces from them.
+        </P>
+        <Figure
+          tint={project.field}
+          bleed
+          caption="Change the garment and watch the rules fire. Nothing in the renderer knows what a lapel is — it only knows that a rule pointed one question at another."
+        >
+          <FormEngine />
+        </Figure>
+
+        <P>
+          <Em>Visibility is derived, never stored.</Em> A question does not carry a{' '}
+          <Code>hidden</Code> column that something has to keep in sync. On every render
+          the engine evaluates the rules against the current answers and computes which
+          questions are showing. It is the same reasoning as deriving leaderboard ranks
+          rather than storing them: a second copy of state is a second thing that can be
+          wrong.
+        </P>
+        <P>
+          <Em>Rows rather than a JSON blob.</Em> The tempting shortcut is one{' '}
+          <Code>jsonb</Code> column holding the whole form. It is faster to write and it
+          costs you the two things that turned out to matter. Options as real rows means
+          an answer can carry a foreign key to the option that was chosen, so a typo in a
+          label cannot orphan historical orders. And it means the obvious business
+          question &mdash; how many customers picked linen this quarter &mdash; is a join
+          rather than a scan through nested documents.
+        </P>
+        <P>
+          <Em>The validation you take on.</Em> Giving up a hand-written form means giving
+          up the compile-time guarantees that came with it, so the checks have to become
+          data too. Requiredness is a column and a rule action, not an{' '}
+          <Code>if</Code> in a component &mdash; which is why the panel above can tell you
+          a submission is blocked without anything in the renderer knowing that a monogram
+          exists. The same evaluation runs server-side on submit; the client copy is a
+          convenience, exactly as with the role checks.
+        </P>
+        <Callout label="Where this connects">
+          A submitted order has to render the same way in six months, even after the form
+          has moved on. So forms are versioned and an answer references the question and
+          the version it was captured under &mdash; the same discipline as stamping
+          weights onto tasks. Both are the same rule: live configuration and settled
+          history must not share a pointer.
+        </Callout>
+        <P>
+          The trade is real. You give up compile-time safety on form shape and you take on
+          a validation layer of your own. For a system whose entire job is to change
+          frequently, configuring data beats shipping code &mdash; but only because the
+          relational shape kept the reporting and the referential integrity that a blob
+          would have thrown away.
         </P>
       </Chapter>
 
@@ -257,6 +305,11 @@ export default function BrandKob() {
               decision: 'Forms modelled as rows, not components',
               because:
                 'Trades compile-time safety for the ability to change intake questions without a deploy. Right trade for a domain whose only constant is churn.',
+            },
+            {
+              decision: 'Relational rows rather than a jsonb blob',
+              because:
+                'A blob ships sooner and loses both referential integrity on chosen options and the ability to answer "how many picked linen" with a join instead of a scan.',
             },
             {
               decision: 'Burn the link inside the insert transaction',
