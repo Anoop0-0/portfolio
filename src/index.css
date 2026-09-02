@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces */
+  --color-ink: #08090a;
+  --color-ink-2: #0d0f11;
+  --color-surface: #111417;
+  --color-line: #1f2429;
+  --color-line-soft: #16191d;
+
+  /* Type */
+  --color-fg: #eceae7;
+  --color-muted: #9aa0a6;
+  --color-dim: #6b7076;
+
+  /* Accents */
+  --color-accent: #ffb020;
+  --color-accent-soft: #4a3410;
+  --color-iron: #ff6a3d;
+  --color-brand: #6ea8fe;
+
+  --font-display: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv05" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+}
+
+/* Faint grid used behind the hero and section rules. */
+@utility grid-veil {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: none;
+}
