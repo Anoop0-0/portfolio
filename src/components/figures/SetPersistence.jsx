@@ -41,21 +41,21 @@ export default function SetPersistence() {
                 type="button"
                 onClick={() => logSet(set.id)}
                 disabled={isSaved || interrupted}
-                className={`flex w-full items-center gap-4 rounded-lg border px-4 py-3 text-left transition-colors ${
+                className={`flex w-full items-center gap-4 border px-4 py-3 text-left transition-colors ${
                   isSaved
-                    ? 'border-iron/40 bg-iron/10'
+                    ? 'border-vermilion/40 bg-vermilion/10'
                     : interrupted
                       ? 'cursor-not-allowed border-line opacity-40'
                       : 'border-line hover:border-dim'
                 }`}
               >
                 <span className="font-mono text-xs text-dim">SET {i + 1}</span>
-                <span className="flex-1 font-mono text-sm text-fg">
+                <span className="flex-1 font-mono text-sm text-ink">
                   {set.weight} kg × {set.reps}
                 </span>
                 <span
                   className="font-mono text-[0.7rem]"
-                  style={{ color: isSaved ? 'var(--color-iron)' : 'var(--color-dim)' }}
+                  style={{ color: isSaved ? 'var(--color-vermilion-deep)' : 'var(--color-dim)' }}
                 >
                   {isSaved ? 'PUT 200 · saved' : 'tap to log'}
                 </span>
@@ -74,14 +74,14 @@ export default function SetPersistence() {
           type="button"
           onClick={() => setInterrupted(true)}
           disabled={interrupted}
-          className="rounded-full border border-line px-3 py-1.5 font-mono text-[0.7rem] text-muted transition-colors hover:border-dim hover:text-fg disabled:opacity-40"
+          className="border border-line px-3 py-1.5 font-mono text-[0.7rem] text-muted transition-colors hover:border-dim hover:text-ink disabled:opacity-40"
         >
           Phone locks · tab evicted
         </button>
         <button
           type="button"
           onClick={reset}
-          className="rounded-full border border-line px-3 py-1.5 font-mono text-[0.7rem] text-muted transition-colors hover:border-dim hover:text-fg"
+          className="border border-line px-3 py-1.5 font-mono text-[0.7rem] text-muted transition-colors hover:border-dim hover:text-ink"
         >
           Reset
         </button>
@@ -92,7 +92,7 @@ export default function SetPersistence() {
           model="IRONLOG · per-set write"
           kept={interrupted ? saved.length : null}
           total={SETS.length}
-          tone="var(--color-iron)"
+          tone="var(--color-vermilion-deep)"
           detail="Each tap is its own committed write. The interruption costs nothing already logged."
         />
         <Result
@@ -109,7 +109,7 @@ export default function SetPersistence() {
 
 function Result({ model, kept, total, tone, detail }) {
   return (
-    <div className="rounded-lg border border-line p-4">
+    <div className="border border-line p-4">
       <p className="label">{model}</p>
       <p className="mt-3 font-mono text-lg" style={{ color: kept === null ? 'var(--color-dim)' : tone }}>
         {kept === null ? '—' : `${kept} / ${total} sets kept`}

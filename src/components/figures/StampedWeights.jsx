@@ -39,8 +39,8 @@ function Month({ title, note, steps, state }) {
       <div className="flex items-center gap-2">
         <span
           aria-hidden="true"
-          className={`h-1.5 w-1.5 rounded-full ${
-            state === 'frozen' ? 'bg-dim' : 'bg-brand'
+          className={`h-1.5 w-1.5 ${
+            state === 'frozen' ? 'bg-dim' : 'bg-cobalt'
           }`}
         />
         <p className="label">{title}</p>
@@ -50,14 +50,14 @@ function Month({ title, note, steps, state }) {
         {steps.map((step) => (
           <li
             key={step.name}
-            className={`flex items-center justify-between gap-4 rounded-md border px-3 py-2.5 ${
-              step.changed ? 'border-brand/40 bg-brand/5' : 'border-line'
+            className={`flex items-center justify-between gap-4 border px-3 py-2.5 ${
+              step.changed ? 'border-cobalt/40 bg-cobalt/5' : 'border-line'
             }`}
           >
             <span className="text-sm text-muted">{step.name}</span>
             <span
               className={`font-mono text-xs tabular-nums ${
-                step.changed ? 'text-brand' : 'text-dim'
+                step.changed ? 'text-cobalt' : 'text-dim'
               }`}
             >
               {step.weight}%

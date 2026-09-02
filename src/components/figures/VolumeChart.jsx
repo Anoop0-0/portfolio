@@ -66,8 +66,8 @@ export default function VolumeChart() {
                 y={barY}
                 width={BAR_W}
                 height={barH}
-                rx="3"
-                fill={week.pr ? 'var(--color-iron)' : 'rgba(255,255,255,0.14)'}
+                rx="0"
+                fill={week.pr ? 'var(--color-vermilion)' : 'var(--color-line)'}
               />
               <text
                 x={x + BAR_W / 2}
@@ -87,20 +87,20 @@ export default function VolumeChart() {
                     y1={barY - 6}
                     x2={x + BAR_W / 2}
                     y2={barY - 20}
-                    stroke="var(--color-iron)"
+                    stroke="var(--color-vermilion)"
                     strokeWidth="1"
                   />
                   <circle
                     cx={x + BAR_W / 2}
                     cy={barY - 24}
                     r="3.5"
-                    fill="var(--color-iron)"
+                    fill="var(--color-vermilion)"
                   />
                   <text
                     x={x + BAR_W / 2}
                     y={barY - 34}
                     textAnchor="middle"
-                    fill="var(--color-iron)"
+                    fill="var(--color-vermilion-deep)"
                     fontSize="9.5"
                     fontFamily="var(--font-mono)"
                   >

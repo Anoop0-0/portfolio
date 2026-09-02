@@ -21,6 +21,13 @@ export const site = {
   ],
 }
 
+/** The recruiter question the case studies do not answer. */
+export const fundamentals = [
+  { figure: '220+', label: 'LeetCode solved', sub: 'C++ / DSA' },
+  { figure: '5\u2605', label: 'HackerRank', sub: 'SQL Advanced' },
+  { figure: '2', label: 'Systems shipped', sub: 'to real users' },
+]
+
 export const stack = [
   {
     group: 'Frontend',

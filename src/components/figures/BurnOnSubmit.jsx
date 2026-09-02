@@ -3,7 +3,7 @@ import { useState } from 'react'
 const STEPS = [
   { sql: 'BEGIN', note: 'One transaction, one connection.' },
   {
-    sql: "UPDATE client_link SET used_at = now()\n  WHERE token = $1 AND used_at IS NULL",
+    sql:"UPDATE client_link SET used_at = now()\n  WHERE token = $1 AND used_at IS NULL",
     note: 'The guard is the WHERE clause, not an earlier read.',
   },
   {
@@ -29,7 +29,7 @@ export default function BurnOnSubmit() {
         <button
           type="button"
           onClick={() => setFired((v) => !v)}
-          className="rounded-full border border-line px-3 py-1.5 font-mono text-[0.7rem] text-muted transition-colors hover:border-dim hover:text-fg"
+          className="border border-line px-3 py-1.5 font-mono text-[0.7rem] text-muted transition-colors hover:border-dim hover:text-ink"
         >
           {fired ? 'Reset' : 'Simulate a double submit'}
         </button>
@@ -41,10 +41,10 @@ export default function BurnOnSubmit() {
             <div className="flex flex-col items-center">
               <span
                 aria-hidden="true"
-                className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
+                className="mt-1.5 h-2 w-2 shrink-0"
                 style={{
                   backgroundColor: step.branch
-                    ? 'var(--color-accent)'
+                    ? 'var(--color-acid)'
                     : 'var(--color-line)',
                 }}
               />
@@ -53,7 +53,7 @@ export default function BurnOnSubmit() {
               )}
             </div>
             <div className="pb-6">
-              <pre className="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre text-fg/90">
+              <pre className="overflow-x-auto font-mono text-xs leading-relaxed whitespace-pre text-ink">
                 {step.sql}
               </pre>
               <p className="mt-1.5 text-xs leading-relaxed text-dim">{step.note}</p>
@@ -67,7 +67,7 @@ export default function BurnOnSubmit() {
           who="Request A"
           verdict="201 Created"
           detail="Claimed the row, inserted the submission, committed."
-          tone="var(--color-brand)"
+          tone="var(--color-cobalt)"
           active={fired}
         />
         <Outcome
@@ -78,7 +78,7 @@ export default function BurnOnSubmit() {
               ? 'Its UPDATE matched zero rows, so it rolled back before touching submissions.'
               : 'Press the button above to race it against A.'
           }
-          tone="var(--color-accent)"
+          tone="var(--color-acid)"
           active={fired}
         />
       </div>
@@ -89,10 +89,10 @@ export default function BurnOnSubmit() {
 function Outcome({ who, verdict, detail, tone, active }) {
   return (
     <div
-      className="rounded-lg border p-4 transition-colors duration-300"
+      className="border p-4 transition-colors duration-300"
       style={{
         borderColor: active ? tone : 'var(--color-line)',
-        backgroundColor: active ? 'rgba(255,255,255,0.02)' : 'transparent',
+        backgroundColor: active ? 'rgba(0,0,0,0.035)' : 'transparent',
       }}
     >
       <p className="label">{who}</p>

@@ -49,7 +49,7 @@ export default function LiveLeaderboard() {
         <p className="flex items-center gap-2 label">
           <span
             aria-hidden="true"
-            className={`h-1.5 w-1.5 rounded-full bg-iron ${pulse ? 'animate-ping' : ''}`}
+            className={`h-1.5 w-1.5 bg-vermilion ${pulse ? 'animate-ping' : ''}`}
           />
           live
         </p>
@@ -63,21 +63,21 @@ export default function LiveLeaderboard() {
         {ranked.map((row) => (
           <div
             key={row.id}
-            className="absolute inset-x-0 flex items-center gap-4 rounded-lg border px-4 transition-transform duration-500 ease-out"
+            className="absolute inset-x-0 flex items-center gap-4 border px-4 transition-transform duration-500 ease-out"
             style={{
               height: ROW_H - 8,
               transform: `translateY(${row.rank * ROW_H}px)`,
-              borderColor: row.you ? 'color-mix(in srgb, var(--color-iron) 40%, transparent)' : 'var(--color-line)',
-              backgroundColor: row.you ? 'color-mix(in srgb, var(--color-iron) 8%, transparent)' : 'transparent',
+              borderColor: row.you ? 'color-mix(in srgb, var(--color-vermilion) 40%, transparent)' : 'var(--color-line)',
+              backgroundColor: row.you ? 'color-mix(in srgb, var(--color-vermilion) 8%, transparent)' : 'transparent',
             }}
           >
             <span className="font-mono text-xs text-dim">{row.rank + 1}</span>
-            <span className={`flex-1 text-sm ${row.you ? 'text-fg' : 'text-muted'}`}>
+            <span className={`flex-1 text-sm ${row.you ? 'text-ink' : 'text-muted'}`}>
               {row.name}
             </span>
             <span
               className="font-mono text-sm tabular-nums"
-              style={{ color: row.you ? 'var(--color-iron)' : 'var(--color-muted)' }}
+              style={{ color: row.you ? 'var(--color-vermilion-deep)' : 'var(--color-muted)' }}
             >
               {row.score.toLocaleString()}
             </span>
@@ -92,7 +92,7 @@ export default function LiveLeaderboard() {
         <button
           type="button"
           onClick={logLift}
-          className="rounded-full border border-iron/50 bg-iron/10 px-4 py-2 font-mono text-[0.72rem] text-iron transition-colors hover:bg-iron/20"
+          className="border border-vermilion/50 bg-vermilion/10 px-4 py-2 font-mono text-[0.72rem] text-vermilion-deep transition-colors hover:bg-vermilion/20"
         >
           Log {nextLift.label}
         </button>

@@ -29,17 +29,17 @@ export default function RoleMatrix() {
         <tbody>
           {ROLES.map((role) => (
             <tr key={role.name} className="border-t border-line">
-              <th scope="row" className="px-5 py-4 text-sm font-medium text-fg">
+              <th scope="row" className="px-5 py-4 text-sm font-medium text-ink">
                 {role.name}
               </th>
               {role.grants.map((granted, i) => (
                 <td key={STAGES[i]} className="px-3 py-4">
                   {granted ? (
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand/15">
+                    <span className="flex h-5 w-5 items-center justify-center bg-cobalt/15">
                       <svg width="10" height="10" viewBox="0 0 10 10" aria-label="Visible">
                         <path
                           d="M2 5 L4 7 L8 3"
-                          stroke="var(--color-brand)"
+                          stroke="var(--color-cobalt)"
                           strokeWidth="1.8"
                           strokeLinecap="round"
                           strokeLinejoin="round"

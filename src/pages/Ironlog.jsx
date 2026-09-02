@@ -23,6 +23,7 @@ export default function Ironlog() {
       lede="A MERN gym progress tracker built around one non-negotiable: the app must never lose a set. Everything else — the social leaderboards, the analytics, the PWA install — grew out of using it four days a week and noticing what it got wrong."
     >
       <Chapter
+        hue={project.hue}
         index={1}
         title="The failure mode that started it"
         summary="Every tracker I used lost work. Not often — just often enough that I stopped trusting any of them mid-session."
@@ -46,6 +47,7 @@ export default function Ironlog() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={2}
         title="Every set commits on tap"
         summary="No drafts, no bulk submits, no reconciliation step. Logging a set is a write that has already landed before you pick the bar back up."
@@ -58,6 +60,7 @@ export default function Ironlog() {
           the server has is everything.
         </P>
         <Figure
+          tint={project.field}
           bleed
           caption="Log a few sets, then interrupt the session. Per-set writes lose nothing; the buffered model loses the lot."
         >
@@ -72,6 +75,7 @@ export default function Ironlog() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={3}
         title="Addressing a single set inside a nested document"
         summary="A workout is one document containing exercises containing sets. Updating one set means reaching three levels down and touching only that leaf."
@@ -106,6 +110,7 @@ export default function Ironlog() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={4}
         title="Competition, because motivation is social"
         summary="Invite a few friends with a code, and the leaderboard becomes the place you log from rather than a page you visit afterwards."
@@ -122,7 +127,7 @@ export default function Ironlog() {
           into a single screen, and scores settle for everyone in the group within
           seconds.
         </P>
-        <Figure caption="Logging from the board itself. Ranks are derived from scores rather than stored, so there is no ordering to keep in sync.">
+        <Figure tint={project.field} caption="Logging from the board itself. Ranks are derived from scores rather than stored, so there is no ordering to keep in sync.">
           <LiveLeaderboard />
         </Figure>
         <P>
@@ -133,6 +138,7 @@ export default function Ironlog() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={5}
         title="Getting onto the home screen"
         summary="An app you use in a gym has to open like an app. JWT and Google OAuth for entry; a PWA install for everything after."
@@ -153,6 +159,7 @@ export default function Ironlog() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={6}
         title="Analytics that tell you something you did not already know"
         summary="Weekly volume, records detected automatically, and leaderboards filtered by body part."
@@ -164,6 +171,7 @@ export default function Ironlog() {
           off three weeks ago.
         </P>
         <Figure
+          tint={project.field}
           bleed
           caption="Weekly volume with records marked. A PR is detected when the set is written, not recomputed every time a chart is opened."
         >
@@ -184,11 +192,13 @@ export default function Ironlog() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={7}
         title="Trade-offs I would defend"
         summary="Where the design deliberately paid something to get something better."
       >
         <Tradeoffs
+          hueDeep={project.hueDeep}
           rows={[
             {
               decision: 'One write per set',

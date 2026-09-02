@@ -15,73 +15,54 @@ export default function ProjectLayout({ project, lede, children }) {
 
   return (
     <article>
-      <Container as="header" className="pt-16 pb-14 sm:pt-24">
-        <Link
-          to="/"
-          className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
-        >
-          <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-            <path
-              d="M13 8 H4 M8 4 L4 8 L8 12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-              className="transition-transform duration-300 group-hover:-translate-x-1"
-            />
-          </svg>
-          All work
-        </Link>
-
-        <p className="label mt-12">{project.kicker}</p>
-
-        <h1 className="mt-5 max-w-3xl font-display text-[2.75rem] leading-[1.05] tracking-tight sm:text-6xl">
-          <span style={{ color: `var(${project.accentVar})` }}>{project.name}</span>
-          <span className="text-dim"> / </span>
-          {project.title}
-        </h1>
-
-        <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{lede}</p>
-
-        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-line pt-8 sm:grid-cols-4">
-          <Meta term="Role" value={project.role} />
-          <Meta term="Timeline" value={project.period} />
-          <Meta term="Scope" value={project.scope} />
-          <Meta term="Stack" value={project.stack.join(' · ')} />
-        </dl>
-      </Container>
-
-      <Container>{children}</Container>
-
-      <Container className="mt-8">
-        <Link
-          to={next.path}
-          className="group flex flex-col gap-3 rounded-2xl border border-line bg-ink-2 p-8 transition-colors hover:bg-surface sm:flex-row sm:items-center sm:justify-between"
-        >
-          <div>
-            <p className="label">Next case study</p>
-            <p className="mt-3 font-display text-3xl tracking-tight">
-              <span style={{ color: `var(${next.accentVar})` }}>{next.name}</span>
-              <span className="text-muted"> — {next.title}</span>
-            </p>
-          </div>
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 16 16"
-            aria-hidden="true"
-            className="shrink-0 text-muted transition-transform duration-300 group-hover:translate-x-1"
+      {/* The page adopts the project's hue before a word is read. */}
+      <header className={project.plateClass}>
+        <Container className="py-12 sm:py-16">
+          <Link
+            to="/"
+            className="label inline-flex items-center gap-2 border-b-2 border-current pb-1 opacity-80 transition-opacity hover:opacity-100"
           >
-            <path
-              d="M3 8 H12 M8 4 L12 8 L8 12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-          </svg>
+            <span aria-hidden="true">&larr;</span> All work
+          </Link>
+
+          <p className="label mt-10 opacity-80">{project.kicker}</p>
+
+          <h1 className="plate-type mt-5 text-[12vw] leading-[0.82] sm:text-[8.5rem]">
+            {project.name}
+          </h1>
+
+          <p className="head-type mt-6 max-w-[22ch] text-2xl leading-[1.1] sm:text-4xl">
+            {project.title}
+          </p>
+
+          <p className="mt-7 max-w-[54ch] text-lg leading-relaxed opacity-85">{lede}</p>
+
+          <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-7 border-t-2 border-current pt-7 sm:grid-cols-4">
+            <Meta term="Role" value={project.role} />
+            <Meta term="Timeline" value={project.period} />
+            <Meta term="Scope" value={project.scope} />
+            <Meta term="Stack" value={project.stack.join(' · ')} />
+          </dl>
+        </Container>
+      </header>
+
+      <Container className="pt-4">{children}</Container>
+
+      <Container className="mt-6 mb-4">
+        <Link to={next.path} className={`group block ${next.plateClass} px-6 py-10 sm:px-10`}>
+          <p className="label opacity-75">Next case study</p>
+          <p className="plate-type mt-4 text-[12vw] leading-[0.86] sm:text-[5.5rem]">
+            {next.name}
+            <span
+              aria-hidden="true"
+              className="ml-4 inline-block transition-transform duration-200 group-hover:translate-x-2"
+            >
+              &rarr;
+            </span>
+          </p>
+          <p className="head-type mt-4 max-w-[26ch] text-lg opacity-85 sm:text-xl">
+            {next.title}
+          </p>
         </Link>
       </Container>
     </article>
@@ -91,8 +72,8 @@ export default function ProjectLayout({ project, lede, children }) {
 function Meta({ term, value }) {
   return (
     <div>
-      <dt className="label">{term}</dt>
-      <dd className="mt-2.5 text-sm leading-relaxed text-fg/90">{value}</dd>
+      <dt className="label opacity-70">{term}</dt>
+      <dd className="mt-2.5 text-sm leading-relaxed">{value}</dd>
     </div>
   )
 }

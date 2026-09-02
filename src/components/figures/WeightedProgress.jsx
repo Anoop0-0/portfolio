@@ -46,7 +46,7 @@ export default function WeightedProgress() {
         <Bar
           label="Effort-weighted progress"
           value={weighted}
-          tone="var(--color-brand)"
+          tone="var(--color-cobalt)"
           emphasis
         />
         <Bar label="Tasks ticked" value={counted} tone="var(--color-line)" />
@@ -71,23 +71,23 @@ export default function WeightedProgress() {
                 type="button"
                 onClick={() => toggle(step.id)}
                 aria-pressed={isDone}
-                className={`flex w-full items-center gap-3 rounded-md border px-3 py-2.5 text-left transition-colors ${
+                className={`flex w-full items-center gap-3 border px-3 py-2.5 text-left transition-colors ${
                   isDone
-                    ? 'border-brand/40 bg-brand/10 text-fg'
+                    ? 'border-cobalt/40 bg-cobalt/10 text-ink'
                     : 'border-line bg-transparent text-muted hover:border-dim'
                 }`}
               >
                 <span
                   aria-hidden="true"
-                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-[4px] border transition-colors ${
-                    isDone ? 'border-brand bg-brand' : 'border-dim'
+                  className={`flex h-4 w-4 shrink-0 items-center justify-center border transition-colors ${
+                    isDone ? 'border-cobalt bg-cobalt' : 'border-dim'
                   }`}
                 >
                   {isDone && (
                     <svg width="10" height="10" viewBox="0 0 10 10">
                       <path
                         d="M2 5 L4 7 L8 3"
-                        stroke="var(--color-ink)"
+                        stroke="var(--color-white)"
                         strokeWidth="1.8"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -104,7 +104,7 @@ export default function WeightedProgress() {
         })}
       </ul>
 
-      <div className="mt-4 flex items-center gap-3 rounded-md border border-dashed border-line px-3 py-2.5">
+      <div className="mt-4 flex items-center gap-3 border border-dashed border-line px-3 py-2.5">
         <span aria-hidden="true" className="font-mono text-xs text-dim">
           +
         </span>
@@ -121,18 +121,18 @@ function Bar({ label, value, tone, emphasis = false }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-4">
-        <p className={`text-sm ${emphasis ? 'text-fg' : 'text-dim'}`}>{label}</p>
+        <p className={`text-sm ${emphasis ? 'text-ink' : 'text-dim'}`}>{label}</p>
         <p
           className={`font-mono tabular-nums ${
-            emphasis ? 'text-xl text-fg' : 'text-sm text-dim'
+            emphasis ? 'text-xl text-ink' : 'text-sm text-dim'
           }`}
         >
           {value}%
         </p>
       </div>
-      <div className="mt-2 h-2 overflow-hidden rounded-full bg-line-soft">
+      <div className="mt-2 h-2 overflow-hidden bg-line">
         <div
-          className="h-full rounded-full transition-[width] duration-500 ease-out"
+          className="h-full transition-[width] duration-500 ease-out"
           style={{ width: `${value}%`, backgroundColor: tone }}
         />
       </div>

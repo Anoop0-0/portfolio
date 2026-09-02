@@ -36,14 +36,37 @@ src/
 Case-study prose lives directly in `pages/BrandKob.jsx` and `pages/Ironlog.jsx`,
 composed from the `Prose.jsx` primitives. Edit the text there.
 
-## Design tokens
+## Design system — "Signal Plate"
 
-Colours, fonts and the custom `label` / `grid-veil` / `reveal` utilities are all
-defined in `src/index.css` under `@theme` (Tailwind v4 — no `tailwind.config.js`).
-Change `--color-accent` there to re-skin the whole site.
+Colour is structural, not decorative: each project owns a hue and floods its own
+page, and a project's hue never appears on the other project's page.
 
-Fonts are Instrument Serif (display), Inter (body) and JetBrains Mono (labels),
-loaded from Google Fonts in `index.html`.
+| Token | Value | Job |
+| --- | --- | --- |
+| `--color-ink` | `#14161a` | Type, rules, plate borders |
+| `--color-paper` | `#f2f3f5` | Reading ground |
+| `--color-cobalt` | `#1f3be0` | BrandKob identity |
+| `--color-vermilion` | `#ff3b1f` | IRONLOG identity |
+| `--color-acid` | `#d8ff2e` | Interaction and live state only |
+| `--color-jade` | `#00a878` | Fourth data series in charts |
+
+Two contrast rules the palette depends on, both verified against WCAG AA:
+
+- Vermilion carries **ink** type, never white (white on vermilion is ~3:1).
+- Vermilion as *text on paper* uses `--color-vermilion-deep` (`#c02a0c`, 5.3:1).
+  The raw hue is for plates and fills only.
+
+Type is a **width** contrast rather than a size contrast: **Archivo** wide and
+heavy in caps for plates, **Instrument Sans** narrow for body, **DM Mono** for
+labels, weights and endpoints. The `plate-type`, `head-type`, `num-type` and
+`label` utilities in `src/index.css` encode the three display roles.
+
+Layout: no border-radius anywhere, no shadows, 3px ink rules instead of
+hairlines. Case studies are full-bleed plates at unequal heights, and the
+reading column is left-weighted so figures can break the grid to the right.
+
+All of it lives in the `@theme` block in `src/index.css` (Tailwind v4 — there is
+no `tailwind.config.js`). Fonts are loaded from Google Fonts in `index.html`.
 
 ## Deploying
 

@@ -3,13 +3,14 @@ import Container from '../components/Container.jsx'
 import Reveal from '../components/Reveal.jsx'
 import { SectionHeading } from '../components/Prose.jsx'
 import { projects } from '../data/projects.js'
-import { site, stack } from '../data/site.js'
+import { fundamentals, site, stack } from '../data/site.js'
 
 export default function Home() {
   return (
     <>
       <Hero />
       <Work />
+      <Fundamentals />
       <About />
       <Stack />
       <Contact />
@@ -19,73 +20,49 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="grid-veil pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[42rem] -translate-x-1/2 rounded-full opacity-[0.10] blur-[100px]"
-        style={{ background: 'var(--color-accent)' }}
-      />
+    <section className="bg-ink text-paper">
+      <Container className="pt-14 pb-16 sm:pt-20 sm:pb-24">
+        <p className="label flex flex-wrap items-center gap-x-3 gap-y-2 text-paper/60">
+          <span className="bg-acid px-2 py-1 text-ink">
+            {site.current.title} &middot; {site.current.org}
+          </span>
+          <span>{site.location}</span>
+        </p>
 
-      <Container className="relative pt-20 pb-24 sm:pt-32 sm:pb-32">
-        <Reveal>
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-2 label">
-            <span className="flex items-center gap-2">
-              <span
-                aria-hidden="true"
-                className="h-1.5 w-1.5 rounded-full bg-accent"
-              />
-              {site.current.title} at {site.current.org}
-            </span>
-            <span aria-hidden="true" className="text-line">
-              /
-            </span>
-            <span>{site.location}</span>
-          </p>
-        </Reveal>
+        <h1 className="plate-type mt-8 text-[15vw] leading-[0.8] sm:text-[10.5rem]">
+          Anoop
+          <br />
+          Baghel
+        </h1>
 
-        <Reveal delay={80}>
-          <h1 className="mt-8 font-display text-6xl leading-[0.95] tracking-tight sm:text-8xl">
-            Anoop Baghel
-          </h1>
-        </Reveal>
+        <p className="head-type mt-9 max-w-[18ch] text-2xl leading-[1.08] sm:text-5xl">
+          I build the model underneath
+        </p>
 
-        <Reveal delay={160}>
-          <p className="mt-8 max-w-2xl text-xl leading-[1.55] text-fg/90 sm:text-2xl">
-            Full-stack web developer. I build the internal systems teams actually run
-            on — and I spend most of my thinking on the data model underneath, because
-            that is where the hard problems turn out to live.
-          </p>
-        </Reveal>
+        <p className="mt-7 max-w-[54ch] text-lg leading-relaxed text-paper/75">
+          Full-stack web developer. The visible part of a system is rarely where the hard
+          problem is &mdash; it is in how the data was shaped, and whether the number on
+          screen still means something six months later.
+        </p>
 
-        <Reveal delay={220}>
-          <p className="mt-6 max-w-2xl leading-relaxed text-muted">
-            {site.education.degree} at {site.education.school}, {site.education.span}.
-            Right now I&rsquo;m building the platform a six-person team at BrandKob uses
-            to run ten client accounts, and I maintain IRONLOG, a gym progress tracker
-            with real users who notice the moment something breaks mid-set.
-          </p>
-        </Reveal>
+        <p className="mt-5 max-w-[54ch] leading-relaxed text-paper/55">
+          {site.education.degree} at {site.education.school}, {site.education.span}.
+        </p>
 
-        <Reveal delay={280}>
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <a
-              href="#work"
-              className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-ink transition-opacity hover:opacity-90"
-            >
-              Read the case studies
-            </a>
-            <a
-              href={`mailto:${site.email}`}
-              className="rounded-full border border-line px-5 py-2.5 text-sm text-muted transition-colors hover:border-dim hover:text-fg"
-            >
-              Get in touch
-            </a>
-          </div>
-        </Reveal>
+        <div className="mt-10 flex flex-wrap gap-3">
+          <a
+            href="#work"
+            className="label bg-acid px-5 py-3 text-ink transition-colors hover:bg-paper"
+          >
+            Read the case studies
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            className="label border-2 border-paper/40 px-5 py-3 text-paper transition-colors hover:border-acid hover:text-acid"
+          >
+            Get in touch
+          </a>
+        </div>
       </Container>
     </section>
   )
@@ -93,59 +70,79 @@ function Hero() {
 
 function Work() {
   return (
-    <Container as="section" id="work" className="scroll-mt-24">
-      <Reveal>
-        <SectionHeading
-          eyebrow="Selected work"
-          title="Two systems, described honestly"
-        />
-        <p className="mt-5 max-w-2xl leading-relaxed text-muted">
-          Both of these are real software with real users. The write-ups go into the
-          modelling decisions and the trade-offs, because that is the part of the work
-          worth reading about.
-        </p>
-      </Reveal>
+    <section id="work" className="scroll-mt-14 pt-16">
+      <Container>
+        <Reveal>
+          <SectionHeading eyebrow="Selected work" title="Two systems, described honestly" />
+          <p className="mt-5 max-w-[58ch] leading-relaxed text-muted">
+            Both are real software with real users. The write-ups go into the modelling
+            decisions and the trade-offs, because that is the part worth reading about.
+          </p>
+        </Reveal>
+      </Container>
 
-      <div className="mt-12 flex flex-col gap-6">
+      {/* Plates run full-bleed and at unequal heights. */}
+      <div className="mt-10 flex flex-col gap-4">
         {projects.map((project, i) => (
-          <Reveal key={project.slug} delay={i * 80}>
-            <CaseStudyCard project={project} index={i + 1} />
+          <Reveal key={project.slug} delay={i * 70}>
+            <CaseStudyCard project={project} />
           </Reveal>
         ))}
       </div>
-    </Container>
+    </section>
+  )
+}
+
+function Fundamentals() {
+  return (
+    <section className="mt-20">
+      <Reveal className="bg-ink text-paper">
+        <Container className="py-12">
+          <p className="label text-paper/55">Fundamentals</p>
+          <div className="mt-8 grid gap-x-8 gap-y-10 sm:grid-cols-3">
+            {fundamentals.map((f) => (
+              <div key={f.label} className="border-t-2 border-paper/25 pt-5">
+                <p className="num-type text-6xl text-acid sm:text-7xl">{f.figure}</p>
+                <p className="label mt-5 text-paper">{f.label}</p>
+                <p className="label mt-2 text-paper/55">{f.sub}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Reveal>
+    </section>
   )
 }
 
 function About() {
   return (
-    <Container as="section" id="about" className="mt-32 scroll-mt-24">
+    <Container as="section" id="about" className="mt-24 scroll-mt-20">
       <Reveal>
         <SectionHeading eyebrow="About" title="Electrical engineering, then everything else" />
       </Reveal>
 
-      <div className="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-        <Reveal className="flex max-w-2xl flex-col gap-5">
-          <p className="text-lg leading-relaxed text-fg/90">
-            I came to software from an electrical engineering degree, which mostly means
-            I got used to asking what happens at the edges before asking what happens in
-            the happy path.
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
+        <Reveal className="flex max-w-[62ch] min-w-0 flex-col gap-5">
+          <p className="text-xl leading-[1.45] font-medium">
+            I came to software from an electrical engineering degree, which mostly means I
+            got used to asking what happens at the edges before what happens in the happy
+            path.
           </p>
-          <p className="leading-relaxed text-muted">
-            That habit shows up in the work. When a progress bar needs to survive a
-            template edit six weeks later, or a client link has to be usable exactly
-            once even if someone double-taps on bad hotel wifi, the answer is almost
-            never in the UI layer. It is in how the data was shaped in the first place.
+          <p className="leading-[1.68] text-muted">
+            That habit shows up in the work. When a progress bar needs to survive a template
+            edit six weeks later, or a client link has to be usable exactly once even if
+            someone double-taps on bad hotel wifi, the answer is almost never in the UI
+            layer. It is in how the data was shaped in the first place.
           </p>
-          <p className="leading-relaxed text-muted">
-            I like building for people I can actually talk to — a team down the hall, or
-            friends who text me when a set does not save. Short feedback loops make you
+          <p className="leading-[1.68] text-muted">
+            I like building for people I can actually talk to &mdash; a team down the hall,
+            or friends who text me when a set does not save. Short feedback loops make you
             honest about what is really working.
           </p>
         </Reveal>
 
-        <Reveal delay={120}>
-          <dl className="flex flex-col divide-y divide-line border-y border-line">
+        <Reveal delay={100}>
+          <dl className="border-t-[3px] border-ink">
             <Fact
               term="Education"
               value={site.education.degree}
@@ -171,11 +168,11 @@ function About() {
 
 function Fact({ term, value, detail }) {
   return (
-    <div className="py-5">
-      <dt className="label">{term}</dt>
+    <div className="border-b border-line py-5">
+      <dt className="label text-dim">{term}</dt>
       <dd className="mt-2.5">
-        <span className="block text-sm text-fg">{value}</span>
-        <span className="mt-1 block text-sm text-dim">{detail}</span>
+        <span className="head-type block text-base">{value}</span>
+        <span className="mt-1.5 block text-sm text-muted">{detail}</span>
       </dd>
     </div>
   )
@@ -183,21 +180,24 @@ function Fact({ term, value, detail }) {
 
 function Stack() {
   return (
-    <Container as="section" className="mt-32">
+    <Container as="section" className="mt-24">
       <Reveal>
         <SectionHeading eyebrow="Toolkit" title="What I reach for" />
       </Reveal>
 
-      <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+      <div className="mt-10 grid border-[3px] border-ink sm:grid-cols-2">
         {stack.map((group, i) => (
-          <Reveal key={group.group} delay={i * 60} className="bg-ink-2 p-6">
-            <p className="label">{group.group}</p>
+          <Reveal
+            key={group.group}
+            delay={i * 50}
+            className={`border-ink p-6 ${i % 2 === 0 ? 'sm:border-r-[3px]' : ''} ${
+              i < stack.length - (stack.length % 2 === 0 ? 2 : 1) ? 'border-b-[3px]' : ''
+            }`}
+          >
+            <p className="label text-dim">{group.group}</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-full border border-line px-3 py-1.5 text-sm text-muted"
-                >
+                <li key={item} className="border-2 border-ink px-2.5 py-1 text-sm">
                   {item}
                 </li>
               ))}
@@ -211,27 +211,22 @@ function Stack() {
 
 function Contact() {
   return (
-    <Container as="section" id="contact" className="mt-32 scroll-mt-24">
-      <Reveal className="relative overflow-hidden rounded-2xl border border-line bg-ink-2 p-8 sm:p-14">
-        <div
-          aria-hidden="true"
-          className="grid-veil pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_80%_at_100%_0%,black,transparent)]"
-        />
-        <div className="relative">
-          <p className="label">Contact</p>
-          <h2 className="mt-5 max-w-xl font-display text-4xl leading-[1.1] tracking-tight sm:text-5xl">
-            If you are building something with a stubborn data model, I&rsquo;d like to
-            hear about it.
+    <section id="contact" className="mt-24 scroll-mt-20">
+      <Reveal className="bg-cobalt text-white">
+        <Container className="py-14 sm:py-20">
+          <p className="label text-cobalt-tint">Contact</p>
+          <h2 className="plate-type mt-6 max-w-[16ch] text-[11vw] leading-[0.88] sm:text-[5rem]">
+            Got a stubborn data model?
           </h2>
-          <p className="mt-6 max-w-lg leading-relaxed text-muted">
-            Internships, freelance builds, or just a good argument about schema design —
-            email is the fastest way to reach me.
+          <p className="mt-7 max-w-[48ch] text-lg leading-relaxed text-cobalt-tint">
+            Internships, freelance builds, or a good argument about schema design. Email is
+            the fastest way to reach me.
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <a
               href={`mailto:${site.email}`}
-              className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-ink transition-opacity hover:opacity-90"
+              className="label bg-acid px-5 py-3 text-ink transition-colors hover:bg-white"
             >
               {site.email}
             </a>
@@ -243,14 +238,14 @@ function Contact() {
                   href={link.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="rounded-full border border-line px-5 py-2.5 text-sm text-muted transition-colors hover:border-dim hover:text-fg"
+                  className="label border-2 border-white/50 px-5 py-3 text-white transition-colors hover:border-acid hover:text-acid"
                 >
                   {link.label}
                 </a>
               ))}
           </div>
-        </div>
+        </Container>
       </Reveal>
-    </Container>
+    </section>
   )
 }

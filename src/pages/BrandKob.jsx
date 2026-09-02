@@ -25,6 +25,7 @@ export default function BrandKob() {
       lede="An internal task manager for a six-person agency team running ten client accounts. The interesting part is not the task list — it is the progress model underneath it, and the decision to make a percentage mean something."
     >
       <Chapter
+        hue={project.hue}
         index={1}
         title="The question nobody could answer"
         summary="Ten client accounts, one small team, and a recurring monthly shape of work. The status question came up constantly and had no trustworthy answer."
@@ -51,6 +52,7 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={2}
         title="Progress as effort, not count"
         summary="Each client’s monthly route is a set of steps carrying percentage weights that sum to 100. Completion adds up weights, not rows."
@@ -63,6 +65,7 @@ export default function BrandKob() {
           — a route that sums to 97 is a route that will quietly lie for a month.
         </P>
         <Figure
+          tint={project.field}
           bleed
           caption="Toggle steps to watch the two models disagree. The heavy middle of the month — production and post — is where a count-based bar is most misleading."
         >
@@ -77,6 +80,7 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={3}
         title="Ad-hoc work, tracked but scoped out"
         summary="Real months contain work nobody planned. It has to be visible without silently redefining what 100% meant."
@@ -102,6 +106,7 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={4}
         title="Weights are stamped, not referenced"
         summary="A route is a living template. History is not. The two must not share a pointer."
@@ -119,7 +124,7 @@ export default function BrandKob() {
           <Em>future</Em> tasks will be worth and leaves every task already created
           untouched.
         </P>
-        <Figure caption="The same route, edited between months. September picks up the new weights; August is frozen at whatever it was worth when the work was actually done.">
+        <Figure tint={project.field} caption="The same route, edited between months. September picks up the new weights; August is frozen at whatever it was worth when the work was actually done.">
           <StampedWeights />
         </Figure>
         <P>
@@ -131,6 +136,7 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={5}
         title="Three roles, three views of the same month"
         summary="Access control here is not about hiding secrets. It is about giving each role a screen that is actually usable."
@@ -143,7 +149,7 @@ export default function BrandKob() {
           route. Only an admin touches the weights and templates that define what a
           percentage means.
         </P>
-        <Figure>
+        <Figure tint={project.field}>
           <RoleMatrix />
         </Figure>
         <P>
@@ -156,6 +162,7 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={6}
         title="Forms as data, not as code"
         summary="A bespoke tailoring client needed order forms that change often. Shipping a deploy for every question change was never going to hold."
@@ -174,6 +181,7 @@ export default function BrandKob() {
           application code.
         </P>
         <Figure
+          tint={project.field}
           bleed
           caption="Solid arrows are ownership, dashed arrows are conditional logic. A rule is a row that references three other rows."
         >
@@ -189,6 +197,7 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={7}
         title="One link, one submission"
         summary="Clients get a single-use link. Making it genuinely single-use is a transaction problem, not a token problem."
@@ -211,7 +220,7 @@ export default function BrandKob() {
           link was already burned and the transaction rolls back before any submission
           exists.
         </P>
-        <Figure caption="Both writes commit together or neither does. There is no interleaving that produces a burned link with no order, or an order against a link that was already spent.">
+        <Figure tint={project.field} caption="Both writes commit together or neither does. There is no interleaving that produces a burned link with no order, or an order against a link that was already spent.">
           <BurnOnSubmit />
         </Figure>
         <Callout label="The rule of thumb">
@@ -221,11 +230,13 @@ export default function BrandKob() {
       </Chapter>
 
       <Chapter
+        hue={project.hue}
         index={8}
         title="Trade-offs I would defend"
         summary="The decisions that were genuinely contested, and the reasoning that settled them."
       >
         <Tradeoffs
+          hueDeep={project.hueDeep}
           rows={[
             {
               decision: 'Denormalise weight onto the task',

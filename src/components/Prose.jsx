@@ -1,32 +1,38 @@
 import Container from './Container.jsx'
 import Reveal from './Reveal.jsx'
 
-/** Section heading with a monospace eyebrow and a rule. */
+/** Section heading: mono eyebrow above wide plate lettering, over a 3px rule. */
 export function SectionHeading({ eyebrow, title, className = '' }) {
   return (
-    <div className={`border-t border-line pt-6 ${className}`}>
-      {eyebrow && <p className="label">{eyebrow}</p>}
-      <h2 className="mt-4 font-display text-3xl leading-[1.15] tracking-tight sm:text-4xl">
-        {title}
-      </h2>
+    <div className={`border-t-[3px] border-ink pt-5 ${className}`}>
+      {eyebrow && <p className="label text-muted">{eyebrow}</p>}
+      <h2 className="head-type mt-4 text-3xl sm:text-5xl">{title}</h2>
     </div>
   )
 }
 
-/** A numbered case-study chapter: sticky index on the left, body on the right. */
-export function Chapter({ index, title, summary, children }) {
+/**
+ * A numbered case-study chapter. The numeral is oversized and set in the
+ * project's hue — chapters here are a real sequence, so the number is data.
+ */
+export function Chapter({ index, title, summary, hue, children }) {
   return (
-    <Reveal as="section" className="border-t border-line py-14 sm:py-20">
-      <div className="grid gap-8 lg:grid-cols-[10rem_1fr] lg:gap-12">
-        <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
-          <p className="label">{String(index).padStart(2, '0')}</p>
-          <h2 className="mt-3 font-display text-2xl leading-tight tracking-tight lg:text-[1.75rem]">
-            {title}
-          </h2>
+    <Reveal as="section" className="border-t-[3px] border-ink py-12 sm:py-16">
+      <div className="grid gap-7 lg:grid-cols-[11rem_1fr] lg:gap-14">
+        <div className="min-w-0 lg:sticky lg:top-20 lg:self-start">
+          <p
+            className="num-type text-6xl sm:text-7xl"
+            style={{ color: `var(${hue})` }}
+            aria-hidden="true"
+          >
+            {String(index).padStart(2, '0')}
+          </p>
+          <h2 className="head-type mt-4 text-xl leading-[1.05] sm:text-2xl">{title}</h2>
         </div>
-        <div className="min-w-0 max-w-2xl">
+
+        <div className="min-w-0 max-w-[62ch]">
           {summary && (
-            <p className="text-lg leading-relaxed text-fg/90 sm:text-xl">{summary}</p>
+            <p className="text-lg leading-[1.45] font-medium sm:text-xl">{summary}</p>
           )}
           <div className="mt-6 flex flex-col gap-6">{children}</div>
         </div>
@@ -36,42 +42,40 @@ export function Chapter({ index, title, summary, children }) {
 }
 
 export function P({ children }) {
-  return <p className="leading-[1.75] text-muted">{children}</p>
+  return <p className="leading-[1.68] text-muted">{children}</p>
 }
 
 export function Em({ children }) {
-  return <strong className="font-medium text-fg">{children}</strong>
+  return <strong className="font-semibold text-ink">{children}</strong>
 }
 
 export function Code({ children }) {
   return (
-    <code className="rounded border border-line bg-surface px-1.5 py-0.5 font-mono text-[0.85em] text-fg/90 [overflow-wrap:anywhere]">
+    <code className="bg-ink px-1.5 py-0.5 font-mono text-[0.82em] text-acid [overflow-wrap:anywhere]">
       {children}
     </code>
   )
 }
 
-/** Pull-out for the single sharpest idea in a chapter. */
+/** The sharpest idea in a chapter, knocked out of ink. */
 export function Callout({ label = 'The idea', children }) {
   return (
-    <aside className="relative rounded-lg border border-line bg-surface/60 p-5 pl-6">
-      <span
-        aria-hidden="true"
-        className="absolute top-5 bottom-5 left-0 w-[2px] rounded-full bg-accent"
-      />
-      <p className="label">{label}</p>
-      <p className="mt-3 leading-relaxed text-fg/90">{children}</p>
+    <aside className="bg-ink px-6 py-6 text-paper">
+      <p className="label text-acid">{label}</p>
+      <p className="head-type mt-4 text-lg leading-[1.25] sm:text-xl">{children}</p>
     </aside>
   )
 }
 
 export function List({ items }) {
   return (
-    <ul className="flex flex-col gap-3">
+    <ul className="flex flex-col">
       {items.map((item, i) => (
-        <li key={i} className="flex gap-3 leading-relaxed text-muted">
-          <span aria-hidden="true" className="mt-2.5 h-px w-4 shrink-0 bg-line" />
-          <span>{item}</span>
+        <li
+          key={i}
+          className="border-t border-line py-3.5 leading-relaxed text-muted last:border-b last:border-line"
+        >
+          {item}
         </li>
       ))}
     </ul>
@@ -79,15 +83,17 @@ export function List({ items }) {
 }
 
 /** Decision / trade-off pairs — the part of a case study people actually read. */
-export function Tradeoffs({ rows }) {
+export function Tradeoffs({ rows, hueDeep }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-line">
+    <div className="border-[3px] border-ink">
       {rows.map((row, i) => (
         <div
           key={i}
-          className="grid gap-2 border-b border-line p-5 last:border-0 sm:grid-cols-[1fr_1.4fr] sm:gap-6"
+          className="grid gap-2 border-b border-line px-5 py-5 last:border-0 sm:grid-cols-[1fr_1.4fr] sm:gap-7"
         >
-          <p className="font-mono text-[0.8rem] leading-relaxed text-fg">{row.decision}</p>
+          <p className="head-type text-sm" style={{ color: `var(${hueDeep})` }}>
+            {row.decision}
+          </p>
           <p className="text-sm leading-relaxed text-muted">{row.because}</p>
         </div>
       ))}
@@ -95,11 +101,16 @@ export function Tradeoffs({ rows }) {
   )
 }
 
-/** Caption wrapper for the inline SVG / interactive figures. */
-export function Figure({ caption, children, bleed = false }) {
+/** Figures sit on a tinted field of their project's hue, not a neutral panel. */
+export function Figure({ caption, children, bleed = false, tint }) {
   return (
-    <figure className={`min-w-0 ${bleed ? 'lg:-mr-24' : ''}`}>
-      <div className="overflow-hidden rounded-xl border border-line bg-ink-2">{children}</div>
+    <figure className={`min-w-0 ${bleed ? 'lg:-mr-28' : ''}`}>
+      <div
+        className="border-[3px] border-ink"
+        style={tint ? { backgroundColor: `var(${tint})` } : { backgroundColor: 'var(--color-white)' }}
+      >
+        {children}
+      </div>
       {caption && (
         <figcaption className="mt-3 font-mono text-xs leading-relaxed text-dim">
           {caption}

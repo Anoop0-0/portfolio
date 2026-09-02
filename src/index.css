@@ -1,27 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  /* Surfaces */
-  --color-ink: #08090a;
-  --color-ink-2: #0d0f11;
-  --color-surface: #111417;
-  --color-line: #1f2429;
-  --color-line-soft: #16191d;
+  /* --- Ground --------------------------------------------------------- */
+  --color-ink: #14161a;
+  --color-ink-soft: #23272e;
+  --color-muted: #4a4f58;
+  --color-dim: #61666e;
+  --color-paper: #f2f3f5;
+  --color-white: #ffffff;
+  --color-line: #c9cdd3;
+  --color-line-soft: #dfe2e6;
 
-  /* Type */
-  --color-fg: #eceae7;
-  --color-muted: #9aa0a6;
-  --color-dim: #6b7076;
+  /* --- Signal: each hue has one job ----------------------------------- */
+  --color-cobalt: #1f3be0;        /* BrandKob identity */
+  --color-cobalt-tint: #dde3ff;   /* type + fields on cobalt */
+  --color-vermilion: #ff3b1f;     /* IRONLOG identity */
+  --color-vermilion-tint: #5a1508;/* type on vermilion — never white */
+  --color-vermilion-deep: #c02a0c;/* vermilion as TEXT on paper — 5.3:1 */
+  --color-acid: #d8ff2e;          /* interaction and live state only */
+  --color-jade: #00a878;           /* fourth data series */
+  --color-cobalt-field: #e7ebff;   /* figure ground on BrandKob pages */
+  --color-vermilion-field: #ffe9e4;/* figure ground on IRONLOG pages */
 
-  /* Accents */
-  --color-accent: #ffb020;
-  --color-accent-soft: #4a3410;
-  --color-iron: #ff6a3d;
-  --color-brand: #6ea8fe;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --font-display: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* No border-radius anywhere. Plates have corners. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 
 @layer base {
@@ -31,23 +44,23 @@
   }
 
   body {
-    background-color: var(--color-ink);
-    color: var(--color-fg);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
-    font-feature-settings: "cv05" 1, "ss01" 1;
+    font-size: 17px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: var(--color-accent);
+    background-color: var(--color-acid);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 3px solid var(--color-cobalt);
+    outline-offset: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -63,29 +76,46 @@
   }
 }
 
+/* Plate lettering: wide and heavy, set against the narrow body face. */
+@utility plate-type {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 118, "wght" 850;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+@utility head-type {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 112, "wght" 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+@utility num-type {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 122, "wght" 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.85;
+}
+
 @utility label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  line-height: 1;
-  letter-spacing: 0.14em;
+  line-height: 1.1;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-dim);
-}
-
-/* Faint grid used behind the hero and section rules. */
-@utility grid-veil {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 72px 72px;
 }
 
 @utility reveal {
   opacity: 0;
   transform: translateY(14px);
   transition:
-    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @utility reveal-in {
