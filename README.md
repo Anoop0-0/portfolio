@@ -45,20 +45,21 @@ Change `--color-accent` there to re-skin the whole site.
 Fonts are Instrument Serif (display), Inter (body) and JetBrains Mono (labels),
 loaded from Google Fonts in `index.html`.
 
-## Deploying to Vercel
+## Deploying
 
-The repo is a stock Vite SPA, so Vercel's defaults work:
+This repo is connected to the Vercel project `portfolio_website`, so **pushing to
+`main` deploys to production** at [anoopbaghel.in](https://anoopbaghel.in). Pull
+requests get their own preview URLs.
 
-- Framework preset: **Vite**
-- Build command: `npm run build`
-- Output directory: `dist`
+To deploy by hand instead (bypasses git entirely):
 
-`vercel.json` adds the SPA rewrite so that deep links like `/work/brandkob`
-resolve to `index.html` instead of 404ing, plus long-lived caching for hashed
-assets.
+```bash
+npx vercel@latest --prod
+```
 
-To point the domain at it: add `anoopbaghel.in` under the project's **Domains**
-tab and follow the DNS records Vercel shows for your registrar.
+Vercel's Vite defaults handle the build (`npm run build` into `dist`).
+`vercel.json` adds the SPA rewrite so deep links like `/work/brandkob` resolve to
+`index.html` instead of 404ing, plus long-lived caching for hashed assets.
 
 ## Before going live
 
