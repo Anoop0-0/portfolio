@@ -29,13 +29,15 @@ src/
   pages/
     Home.jsx
     CurlO.jsx             case study 1
-    BrandKob.jsx          case study 2
-    Ironlog.jsx           case study 3
+    Ironlog.jsx           case study 2
     NotFound.jsx
 ```
 
-Case-study prose lives directly in `pages/BrandKob.jsx` and `pages/Ironlog.jsx`,
+Case-study prose lives directly in `pages/CurlO.jsx` and `pages/Ironlog.jsx`,
 composed from the `Prose.jsx` primitives. Edit the text there.
+
+`/work/brandkob` was a published URL before Curl-O absorbed it; `vercel.json`
+redirects it permanently rather than letting old links 404.
 
 ## Design system — "Signal Plate"
 
@@ -46,9 +48,8 @@ page, and a project's hue never appears on the other project's page.
 | --- | --- | --- |
 | `--color-ink` | `#14161a` | Type, rules, plate borders |
 | `--color-paper` | `#f2f3f5` | Reading ground |
-| `--color-cobalt` | `#1f3be0` | BrandKob identity |
+| `--color-cobalt` | `#1f3be0` | Curl-O identity |
 | `--color-vermilion` | `#ff3b1f` | IRONLOG identity |
-| `--color-magenta` | `#c4085f` | Curl-O identity |
 | `--color-acid` | `#d8ff2e` | Interaction and live state only |
 | `--color-jade` | `#00a878` | Fourth data series in charts |
 

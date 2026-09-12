@@ -94,12 +94,12 @@ export default function RoleDesigner() {
               onClick={() => setActive(r.key)}
               className={`border-2 px-3 py-1.5 text-sm transition-colors ${
                 on
-                  ? 'border-magenta bg-magenta text-white'
+                  ? 'border-cobalt bg-cobalt text-white'
                   : 'border-ink bg-white text-ink hover:bg-acid'
               }`}
             >
               {r.label}
-              <span className={`ml-2 font-mono text-xs ${on ? 'text-magenta-tint' : 'text-dim'}`}>
+              <span className={`ml-2 font-mono text-xs ${on ? 'text-cobalt-tint' : 'text-dim'}`}>
                 r{r.rank}
               </span>
             </button>
@@ -109,7 +109,7 @@ export default function RoleDesigner() {
 
       <div className="mt-7 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
         <div>
-          <p className="label text-magenta">capabilities</p>
+          <p className="label text-cobalt">capabilities</p>
           <ul className="mt-3 flex flex-col">
             {CAPABILITIES.map((cap) => {
               const on = role.caps.includes(cap)
@@ -121,11 +121,11 @@ export default function RoleDesigner() {
                   <span
                     aria-hidden="true"
                     className={`inline-block h-2.5 w-2.5 shrink-0 ${
-                      on ? 'bg-magenta' : 'bg-line'
+                      on ? 'bg-cobalt' : 'bg-line'
                     }`}
                   />
                   <span className={`flex-1 ${on ? 'text-ink' : 'text-dim'}`}>{cap}</span>
-                  <span className={on ? 'text-magenta' : 'text-dim'}>
+                  <span className={on ? 'text-cobalt' : 'text-dim'}>
                     {on ? 'true' : 'false'}
                   </span>
                 </li>
@@ -138,7 +138,7 @@ export default function RoleDesigner() {
         </div>
 
         <div>
-          <p className="label text-magenta">the board this role gets</p>
+          <p className="label text-cobalt">the board this role gets</p>
           <ul className="mt-3 flex flex-col gap-1.5">
             {COLUMNS.map((col) => {
               const sees = role.sees.includes(col.key)
@@ -150,7 +150,7 @@ export default function RoleDesigner() {
                     !sees
                       ? 'border-line bg-white text-dim'
                       : moves
-                        ? 'border-magenta bg-magenta/10 text-ink'
+                        ? 'border-cobalt bg-cobalt/10 text-ink'
                         : 'border-ink bg-white text-ink'
                   }`}
                 >

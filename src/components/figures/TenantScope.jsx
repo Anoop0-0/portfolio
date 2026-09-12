@@ -62,7 +62,7 @@ export default function TenantScope() {
       </ol>
 
       <div className="mt-2 border-t-2 border-ink pt-4">
-        <p className="label text-magenta">proved over the wire, not in a unit test</p>
+        <p className="label text-cobalt">proved over the wire, not in a unit test</p>
         <ul className="mt-3 flex flex-col">
           {[
             ['leak-check', 'boots the real Express app against a scratch database and asserts a member of one workspace cannot read another’s data'],
@@ -72,7 +72,7 @@ export default function TenantScope() {
               key={name}
               className="flex flex-col gap-1 border-t border-line py-2.5 last:border-b last:border-line sm:flex-row sm:gap-4"
             >
-              <span className="shrink-0 font-mono text-xs text-magenta sm:w-24">{name}</span>
+              <span className="shrink-0 font-mono text-xs text-cobalt sm:w-24">{name}</span>
               <span className="text-sm leading-relaxed text-muted">{what}</span>
             </li>
           ))}
@@ -84,7 +84,7 @@ export default function TenantScope() {
 
 function Step({ n, title, body, note, tone = 'plain', last = false }) {
   const accent =
-    tone === 'ok' ? 'var(--color-magenta)' : tone === 'bad' ? 'var(--color-ink)' : 'var(--color-line)'
+    tone === 'ok' ? 'var(--color-cobalt)' : tone === 'bad' ? 'var(--color-ink)' : 'var(--color-line)'
   return (
     <li className="grid grid-cols-[auto_1fr] gap-x-4">
       <div className="flex flex-col items-center">

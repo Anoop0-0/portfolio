@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer.jsx'
 import Nav from './components/Nav.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
-import BrandKob from './pages/BrandKob.jsx'
 import CurlO from './pages/CurlO.jsx'
 import Home from './pages/Home.jsx'
 import Ironlog from './pages/Ironlog.jsx'
@@ -23,7 +22,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work/curl-o" element={<CurlO />} />
-          <Route path="/work/brandkob" element={<BrandKob />} />
           <Route path="/work/ironlog" element={<Ironlog />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
