@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="mt-24 bg-ink text-paper">
       <Container className="py-16">
-        <Link to="/" className="plate-type block text-[13vw] leading-[0.82] sm:text-[9rem]">
+        <Link to="/" className="plate-type block text-[min(13vw,9rem)] leading-[0.82]">
           Anoop
           <br />
           Baghel

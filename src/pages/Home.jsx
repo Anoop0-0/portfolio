@@ -29,7 +29,7 @@ function Hero() {
           <span>{site.location}</span>
         </p>
 
-        <h1 className="plate-type mt-8 text-[15vw] leading-[0.8] sm:text-[10.5rem]">
+        <h1 className="plate-type mt-8 text-[min(15vw,10.5rem)] leading-[0.8]">
           Anoop
           <br />
           Baghel
@@ -73,10 +73,11 @@ function Work() {
     <section id="work" className="scroll-mt-14 pt-16">
       <Container>
         <Reveal>
-          <SectionHeading eyebrow="Selected work" title="Two systems, described honestly" />
+          <SectionHeading eyebrow="Selected work" title="Three systems, described honestly" />
           <p className="mt-5 max-w-[58ch] leading-relaxed text-muted">
-            Both are real software with real users. The write-ups go into the modelling
-            decisions and the trade-offs, because that is the part worth reading about.
+            All three are real software that people use. The write-ups go into the
+            modelling decisions and the trade-offs, because that is the part worth
+            reading about.
           </p>
         </Reveal>
       </Container>
@@ -215,7 +216,7 @@ function Contact() {
       <Reveal className="bg-cobalt text-white">
         <Container className="py-14 sm:py-20">
           <p className="label text-cobalt-tint">Contact</p>
-          <h2 className="plate-type mt-6 max-w-[16ch] text-[11vw] leading-[0.88] sm:text-[5rem]">
+          <h2 className="plate-type mt-6 max-w-[16ch] text-[min(11vw,5rem)] leading-[0.88]">
             Got a stubborn data model?
           </h2>
           <p className="mt-7 max-w-[48ch] text-lg leading-relaxed text-cobalt-tint">

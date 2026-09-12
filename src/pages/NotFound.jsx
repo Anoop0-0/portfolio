@@ -5,7 +5,7 @@ import { projects } from '../data/projects.js'
 export default function NotFound() {
   return (
     <Container className="py-24">
-      <p className="num-type text-[28vw] leading-[0.8] text-vermilion sm:text-[14rem]">404</p>
+      <p className="num-type text-[min(28vw,14rem)] leading-[0.8] text-vermilion">404</p>
       <h1 className="head-type mt-6 text-4xl sm:text-5xl">Nothing here</h1>
       <p className="mt-5 max-w-[42ch] leading-relaxed text-muted">
         That page does not exist. The two case studies are probably what you were looking

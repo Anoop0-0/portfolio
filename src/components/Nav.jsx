@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import Container from './Container.jsx'
 
 const links = [
+  { label: 'Curl-O', to: '/work/curl-o' },
   { label: 'BrandKob', to: '/work/brandkob' },
   { label: 'IRONLOG', to: '/work/ironlog' },
   { label: 'About', to: '/#about' },

@@ -28,8 +28,9 @@ src/
     figures/              the interactive diagrams inside the case studies
   pages/
     Home.jsx
-    BrandKob.jsx          case study 1
-    Ironlog.jsx           case study 2
+    CurlO.jsx             case study 1
+    BrandKob.jsx          case study 2
+    Ironlog.jsx           case study 3
     NotFound.jsx
 ```
 
@@ -47,6 +48,7 @@ page, and a project's hue never appears on the other project's page.
 | `--color-paper` | `#f2f3f5` | Reading ground |
 | `--color-cobalt` | `#1f3be0` | BrandKob identity |
 | `--color-vermilion` | `#ff3b1f` | IRONLOG identity |
+| `--color-magenta` | `#c4085f` | Curl-O identity |
 | `--color-acid` | `#d8ff2e` | Interaction and live state only |
 | `--color-jade` | `#00a878` | Fourth data series in charts |
 
@@ -60,6 +62,10 @@ Type is a **width** contrast rather than a size contrast: **Archivo** wide and
 heavy in caps for plates, **Instrument Sans** narrow for body, **DM Mono** for
 labels, weights and endpoints. The `plate-type`, `head-type`, `num-type` and
 `label` utilities in `src/index.css` encode the three display roles.
+
+Display type is sized with `min(Nvw, Nrem)` rather than a `sm:` breakpoint
+jump — a fixed rem size at `sm` overflows every viewport between 640px and
+roughly 1000px, because Archivo Expanded caps run about 0.88em wide.
 
 Layout: no border-radius anywhere, no shadows, 3px ink rules instead of
 hairlines. Case studies are full-bleed plates at unequal heights, and the

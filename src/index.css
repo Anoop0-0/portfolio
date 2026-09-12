@@ -18,6 +18,9 @@
   --color-vermilion-tint: #5a1508;/* type on vermilion — never white */
   --color-vermilion-deep: #c02a0c;/* vermilion as TEXT on paper — 5.3:1 */
   --color-acid: #d8ff2e;          /* interaction and live state only */
+  --color-magenta: #c4085f;        /* Curl-O identity */
+  --color-magenta-tint: #ffd6e8;   /* type on magenta */
+  --color-magenta-field: #ffe4f0;  /* figure ground on Curl-O pages */
   --color-jade: #00a878;           /* fourth data series */
   --color-cobalt-field: #e7ebff;   /* figure ground on BrandKob pages */
   --color-vermilion-field: #ffe9e4;/* figure ground on IRONLOG pages */

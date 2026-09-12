@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { otherProject } from '../data/projects.js'
+import { nextProject } from '../data/projects.js'
 import Container from './Container.jsx'
 
 export default function ProjectLayout({ project, lede, children }) {
-  const next = otherProject(project.slug)
+  const next = nextProject(project.slug)
 
   useEffect(() => {
     document.title = `${project.name} — Anoop Baghel`
@@ -27,7 +27,7 @@ export default function ProjectLayout({ project, lede, children }) {
 
           <p className="label mt-10 opacity-80">{project.kicker}</p>
 
-          <h1 className="plate-type mt-5 text-[12vw] leading-[0.82] sm:text-[8.5rem]">
+          <h1 className="plate-type mt-5 text-[min(12vw,8rem)] leading-[0.82]">
             {project.name}
           </h1>
 
@@ -36,6 +36,18 @@ export default function ProjectLayout({ project, lede, children }) {
           </p>
 
           <p className="mt-7 max-w-[54ch] text-lg leading-relaxed opacity-85">{lede}</p>
+
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="label mt-8 inline-flex items-center gap-2 border-2 border-current px-4 py-2.5 transition-colors hover:bg-acid hover:text-ink"
+            >
+              Open the live app
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
 
           <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-7 border-t-2 border-current pt-7 sm:grid-cols-4">
             <Meta term="Role" value={project.role} />
@@ -51,7 +63,7 @@ export default function ProjectLayout({ project, lede, children }) {
       <Container className="mt-6 mb-4">
         <Link to={next.path} className={`group block ${next.plateClass} px-6 py-10 sm:px-10`}>
           <p className="label opacity-75">Next case study</p>
-          <p className="plate-type mt-4 text-[12vw] leading-[0.86] sm:text-[5.5rem]">
+          <p className="plate-type mt-4 text-[min(12vw,5.5rem)] leading-[0.86]">
             {next.name}
             <span
               aria-hidden="true"

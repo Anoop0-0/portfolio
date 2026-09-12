@@ -15,7 +15,7 @@ export default function CaseStudyCard({ project }) {
         <p className="label">{project.period}</p>
       </div>
 
-      <h3 className="plate-type mt-6 text-[12vw] leading-[0.84] sm:text-[7rem]">
+      <h3 className="plate-type mt-6 text-[min(12vw,7rem)] leading-[0.84]">
         {project.name}
       </h3>
 
