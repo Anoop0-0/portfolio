@@ -4,6 +4,7 @@ import Container from './Container.jsx'
 
 const links = [
   { label: 'Curl-O', to: '/work/curl-o' },
+  { label: 'Be-Spoken', to: '/work/be-spoken' },
   { label: 'IRONLOG', to: '/work/ironlog' },
   { label: 'About', to: '/#about' },
   { label: 'Contact', to: '/#contact' },

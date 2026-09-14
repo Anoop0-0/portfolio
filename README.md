@@ -7,7 +7,7 @@ Vercel at [anoopbaghel.in](https://anoopbaghel.in).
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
+npm run dev      # http://localhost:5173, or $PORT if set
 npm run build    # production build into dist/
 npm run preview  # serve the production build locally
 npm run lint     # oxlint
@@ -29,12 +29,13 @@ src/
   pages/
     Home.jsx
     CurlO.jsx             case study 1
-    Ironlog.jsx           case study 2
+    BeSpoken.jsx          case study 2
+    Ironlog.jsx           case study 3
     NotFound.jsx
 ```
 
-Case-study prose lives directly in `pages/CurlO.jsx` and `pages/Ironlog.jsx`,
-composed from the `Prose.jsx` primitives. Edit the text there.
+Case-study prose lives directly in the `pages/` case-study files, composed from
+the `Prose.jsx` primitives. Edit the text there.
 
 `/work/brandkob` was a published URL before Curl-O absorbed it; `vercel.json`
 redirects it permanently rather than letting old links 404.
@@ -50,6 +51,7 @@ page, and a project's hue never appears on the other project's page.
 | `--color-paper` | `#f2f3f5` | Reading ground |
 | `--color-cobalt` | `#1f3be0` | Curl-O identity |
 | `--color-vermilion` | `#ff3b1f` | IRONLOG identity |
+| `--color-magenta` | `#c4085f` | Be-Spoken identity |
 | `--color-acid` | `#d8ff2e` | Interaction and live state only |
 | `--color-jade` | `#00a878` | Fourth data series in charts |
 

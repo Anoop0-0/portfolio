@@ -85,39 +85,39 @@ export default function SchemaGraph() {
         {/* Rule -> trigger question */}
         <path
           d="M320 252 L320 178"
-          stroke="var(--color-cobalt)"
+          stroke="var(--color-magenta)"
           strokeWidth="1.25"
           strokeDasharray="4 4"
           fill="none"
           markerEnd="url(#arrow)"
         />
-        <text x={312} y={220} textAnchor="end" fill="var(--color-cobalt)" fontSize="10" fontFamily="var(--font-mono)">
+        <text x={312} y={220} textAnchor="end" fill="var(--color-magenta)" fontSize="10" fontFamily="var(--font-mono)">
           when
         </text>
 
         {/* Rule -> target question */}
         <path
           d="M430 252 L430 178"
-          stroke="var(--color-cobalt)"
+          stroke="var(--color-magenta)"
           strokeWidth="1.25"
           strokeDasharray="4 4"
           fill="none"
           markerEnd="url(#arrow)"
         />
-        <text x={438} y={220} fill="var(--color-cobalt)" fontSize="10" fontFamily="var(--font-mono)">
+        <text x={438} y={220} fill="var(--color-magenta)" fontSize="10" fontFamily="var(--font-mono)">
           then reveal
         </text>
 
         {/* Rule -> expected option */}
         <path
           d="M480 300 L640 300 L640 162"
-          stroke="var(--color-cobalt)"
+          stroke="var(--color-magenta)"
           strokeWidth="1.25"
           strokeDasharray="4 4"
           fill="none"
           markerEnd="url(#arrow)"
         />
-        <text x={560} y={292} textAnchor="middle" fill="var(--color-cobalt)" fontSize="10" fontFamily="var(--font-mono)">
+        <text x={560} y={292} textAnchor="middle" fill="var(--color-magenta)" fontSize="10" fontFamily="var(--font-mono)">
           equals
         </text>
 
@@ -140,7 +140,7 @@ function Entity({ x, y, title, fields, w = 180, accent = false }) {
         height={h}
         rx="0"
         fill="var(--color-white)"
-        stroke={accent ? 'var(--color-cobalt)' : 'var(--color-ink)'}
+        stroke={accent ? 'var(--color-magenta)' : 'var(--color-ink)'}
         strokeWidth="1.25"
       />
       <rect
@@ -149,7 +149,7 @@ function Entity({ x, y, title, fields, w = 180, accent = false }) {
         width={w}
         height="34"
         rx="0"
-        fill={accent ? 'var(--color-cobalt-tint)' : 'rgba(0,0,0,0.04)'}
+        fill={accent ? 'var(--color-magenta-tint)' : 'rgba(0,0,0,0.04)'}
       />
       <text
         x={x + 14}

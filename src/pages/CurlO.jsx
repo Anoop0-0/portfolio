@@ -9,10 +9,7 @@ import {
   P,
   Tradeoffs,
 } from '../components/Prose.jsx'
-import BurnOnSubmit from '../components/figures/BurnOnSubmit.jsx'
-import FormEngine from '../components/figures/FormEngine.jsx'
 import RoleDesigner from '../components/figures/RoleDesigner.jsx'
-import SchemaGraph from '../components/figures/SchemaGraph.jsx'
 import StampedWeights from '../components/figures/StampedWeights.jsx'
 import TenantScope from '../components/figures/TenantScope.jsx'
 import WeightedProgress from '../components/figures/WeightedProgress.jsx'
@@ -215,103 +212,6 @@ export default function CurlO() {
       <Chapter
         hue={project.hue}
         index={7}
-        title="Forms as data, not as code"
-        summary="A bespoke tailoring client needed order forms that change often. Shipping a deploy for every question change was never going to hold."
-      >
-        <P>
-          The client takes custom orders, which means intake questions that vary by garment,
-          by fabric, by season. The naive version is a form component per order type, and
-          the naive version dies the first time someone wants a new question on a Tuesday
-          afternoon.
-        </P>
-        <P>
-          Instead the whole structure is modelled relationally. A form has questions; a
-          question has options; rules express conditional logic by pointing at a trigger
-          question, an expected option, and a target question to reveal or require. Nothing
-          about a specific form exists in the application code.
-        </P>
-        <Figure
-          tint={project.field}
-          bleed
-          caption="Solid arrows are ownership, dashed arrows are conditional logic. A rule is a row that references three other rows."
-        >
-          <SchemaGraph />
-        </Figure>
-        <P>
-          The renderer walks this structure and knows nothing about tailoring. Adding a
-          garment type is inserting rows. Below is that idea running: the rows on the left
-          are the entire form definition, and the form on the right is what the renderer
-          produces from them.
-        </P>
-        <Figure
-          tint={project.field}
-          bleed
-          caption="Change the garment and watch the rules fire. Nothing in the renderer knows what a lapel is — it only knows that a rule pointed one question at another."
-        >
-          <FormEngine />
-        </Figure>
-        <P>
-          <Em>Visibility is derived, never stored.</Em> A question does not carry a{' '}
-          <Code>hidden</Code> column that something has to keep in sync. On every render the
-          engine evaluates the rules against the current answers and computes which
-          questions are showing &mdash; the same reasoning as deriving a leaderboard rank
-          rather than storing it.
-        </P>
-        <P>
-          <Em>Rows rather than a blob.</Em> The tempting shortcut is one document holding
-          the whole form. It is faster to write and it costs you the two things that
-          mattered. Options as real rows means an answer can reference the option that was
-          chosen, so a typo in a label cannot orphan historical orders. And the obvious
-          business question &mdash; how many customers picked linen this quarter &mdash;
-          stays a query rather than a scan.
-        </P>
-        <Callout label="Where this connects">
-          A submitted order has to render the same way in six months, even after the form
-          has moved on. So forms are versioned and an answer references the question and the
-          version it was captured under &mdash; the same discipline as stamping weights onto
-          tasks. Both are the same rule: live configuration and settled history must not
-          share a pointer.
-        </Callout>
-      </Chapter>
-
-      <Chapter
-        hue={project.hue}
-        index={8}
-        title="One link, one submission"
-        summary="Clients get a single-use link. Making it genuinely single-use is a transaction problem, not a token problem."
-      >
-        <P>
-          Order links go out to clients who are not platform users and should not have to
-          become ones. Each link is single-use: it opens the form once, accepts one
-          submission, and is dead afterwards.
-        </P>
-        <P>
-          The tempting shape is check-then-write &mdash; read the link, confirm it is
-          unused, insert the submission, mark it used. Under any real concurrency that is a
-          bug. Two taps on a slow connection, or a client who reloads and resubmits, and two
-          requests both pass the check before either writes.
-        </P>
-        <P>
-          The invalidation is instead a conditional{' '}
-          <Code>UPDATE ... WHERE used_at IS NULL</Code> in the same transaction as the
-          insert. The database decides the winner. If the update touches zero rows, the link
-          was already burned and the transaction rolls back before any submission exists.
-        </P>
-        <Figure
-          tint={project.field}
-          caption="Both writes commit together or neither does. There is no interleaving that produces a burned link with no order, or an order against a link that was already spent."
-        >
-          <BurnOnSubmit />
-        </Figure>
-        <Callout label="The rule of thumb">
-          If correctness depends on &ldquo;nobody will click twice&rdquo;, it is not
-          correctness. Push the guard into the write itself and let the database arbitrate.
-        </Callout>
-      </Chapter>
-
-      <Chapter
-        hue={project.hue}
-        index={9}
         title="Validation a different route cannot bypass"
         summary="Anything a controller checks, some other controller can forget. So the checks live in the schema."
       >
@@ -335,7 +235,7 @@ export default function CurlO() {
 
       <Chapter
         hue={project.hue}
-        index={10}
+        index={8}
         title="Three runtime dependencies"
         summary="React, React DOM, React Router. No component library, no state library, no drag-and-drop, no charts, no animation library."
       >
@@ -363,7 +263,7 @@ export default function CurlO() {
 
       <Chapter
         hue={project.hue}
-        index={11}
+        index={9}
         title="Trade-offs I would defend"
         summary="Where the design paid something specific to get something better."
       >
@@ -399,16 +299,6 @@ export default function CurlO() {
               decision: 'Two column lists per role',
               because:
                 'Twice the configuration surface, but the gap between seeing and moving is the only place a hand-off can be expressed as data.',
-            },
-            {
-              decision: 'Forms modelled as rows, not components',
-              because:
-                'Trades compile-time safety for the ability to change intake questions without a deploy. Right trade for a domain whose only constant is churn.',
-            },
-            {
-              decision: 'Burn the link inside the insert transaction',
-              because:
-                'Removes an entire class of double-submit bug by construction instead of by luck, at the cost of nothing but writing the guard as a WHERE clause.',
             },
             {
               decision: 'Three client dependencies',

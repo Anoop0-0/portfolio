@@ -67,7 +67,7 @@ export default function BurnOnSubmit() {
           who="Request A"
           verdict="201 Created"
           detail="Claimed the row, inserted the submission, committed."
-          tone="var(--color-cobalt)"
+          tone="var(--color-magenta)"
           active={fired}
         />
         <Outcome

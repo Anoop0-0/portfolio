@@ -73,10 +73,11 @@ function Work() {
     <section id="work" className="scroll-mt-14 pt-16">
       <Container>
         <Reveal>
-          <SectionHeading eyebrow="Selected work" title="Two systems, described honestly" />
+          <SectionHeading eyebrow="Selected work" title="Three systems, described honestly" />
           <p className="mt-5 max-w-[58ch] leading-relaxed text-muted">
-            Both are real software that people use. The write-ups go into the modelling
-            decisions and the trade-offs, because that is the part worth reading about.
+            All three are real software that people use. The write-ups go into the
+            modelling decisions and the trade-offs, because that is the part worth
+            reading about.
           </p>
         </Reveal>
       </Container>

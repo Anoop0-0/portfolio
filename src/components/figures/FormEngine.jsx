@@ -74,7 +74,7 @@ export default function FormEngine() {
         <div className="border-b-[3px] border-ink p-5 lg:border-r-[3px] lg:border-b-0">
           <p className="label text-dim">Definition &middot; rows in PostgreSQL</p>
 
-          <p className="label mt-5 text-cobalt">question</p>
+          <p className="label mt-5 text-magenta">question</p>
           <ul className="mt-2.5 flex flex-col">
             {QUESTIONS.map((q) => (
               <li
@@ -85,13 +85,13 @@ export default function FormEngine() {
                 <span className="flex-1 text-ink">{q.label}</span>
                 <span className="text-dim">{q.type}</span>
                 {CONDITIONAL.has(q.id) && (
-                  <span className="shrink-0 text-cobalt">conditional</span>
+                  <span className="shrink-0 text-magenta">conditional</span>
                 )}
               </li>
             ))}
           </ul>
 
-          <p className="label mt-6 text-cobalt">rule</p>
+          <p className="label mt-6 text-magenta">rule</p>
           <ul className="mt-2.5 flex flex-col gap-1.5" aria-live="polite">
             {RULES.map((r) => {
               const on = firingIds.has(r.id)
@@ -128,7 +128,7 @@ export default function FormEngine() {
                 <legend className="label mb-2.5 text-ink">
                   {q.label}
                   {required.has(q.id) && (
-                    <span className="ml-2 text-cobalt">required</span>
+                    <span className="ml-2 text-magenta">required</span>
                   )}
                 </legend>
 
@@ -144,7 +144,7 @@ export default function FormEngine() {
                           onClick={() => set(q.id, o.value)}
                           className={`border-2 px-3 py-1.5 text-sm transition-colors ${
                             on
-                              ? 'border-cobalt bg-cobalt text-white'
+                              ? 'border-magenta bg-magenta text-white'
                               : 'border-ink bg-white text-ink hover:bg-acid'
                           }`}
                         >

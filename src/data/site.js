@@ -25,7 +25,7 @@ export const site = {
 export const fundamentals = [
   { figure: '220+', label: 'LeetCode solved', sub: 'C++ / DSA' },
   { figure: '5\u2605', label: 'HackerRank', sub: 'SQL Advanced' },
-  { figure: '2', label: 'Systems shipped', sub: 'to real users' },
+  { figure: '3', label: 'Systems shipped', sub: 'to real users' },
 ]
 
 export const stack = [
