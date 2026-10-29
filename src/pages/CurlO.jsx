@@ -242,8 +242,8 @@ export default function CurlO() {
         <P>
           The board&apos;s drag-and-drop, the popovers, the progress rings and the motion
           system are all hand-written. That was a deliberate constraint rather than a
-          discovery, and the whole client bundle comes to 399&nbsp;kB raw and 119&nbsp;kB
-          gzipped.
+          discovery, and the whole client bundle comes to 568&nbsp;kB raw and 162&nbsp;kB
+          gzipped across 17 code-split chunks.
         </P>
         <P>
           The design brief was its own constraint: no purple gradients, no glow, no Inter.
@@ -253,8 +253,8 @@ export default function CurlO() {
         </P>
         <List
           items={[
-            '~30,000 lines of application code across 173 source files.',
-            '12 Mongoose models, 14 API route modules.',
+            '~29,000 lines of application code across 180 source files.',
+            '15 Mongoose models, 14 API route modules.',
             'React 19 and Vite on Vercel; Express, Mongoose 8 and MongoDB Atlas on Render.',
             'JWT sessions with bcrypt, Google OAuth, Resend for transactional mail, Cashfree for hosted checkout.',
           ]}
@@ -264,6 +264,37 @@ export default function CurlO() {
       <Chapter
         hue={project.hue}
         index={9}
+        title="Seven designs, not a colour picker"
+        summary="Configuration earned its place everywhere it said something about the agency. Where it only said something about taste, it was taken away."
+      >
+        <P>
+          The first version let a workspace pick its own colours &mdash; two pickers, a hex
+          field, a palette per column. That was the same instinct as the rest of the
+          product, let the agency decide, applied to the one place it does not belong.
+        </P>
+        <P>
+          What came back were boards nobody could read. Not because anyone chose badly, but
+          because choosing well means holding a contrast ratio in your head while picking a
+          colour you like, and nobody does that. Dark mode was the worst of it: three greys
+          sitting below the floor at once.
+        </P>
+        <P>
+          So the rule changed. A workspace still configures everything that says something
+          about the agency &mdash; its columns, its roles, its forms, its mark. What it no
+          longer configures is how the product itself reads. Seven designs replace the
+          pickers, and each one is checked on every screen rather than on the board it was
+          designed against.
+        </P>
+        <Callout label="The line">
+          Configuration should express something about the customer. A setting that only
+          expresses taste is a way for a customer to break the product and call it a
+          preference.
+        </Callout>
+      </Chapter>
+
+      <Chapter
+        hue={project.hue}
+        index={10}
         title="Trade-offs I would defend"
         summary="Where the design paid something specific to get something better."
       >
@@ -303,7 +334,12 @@ export default function CurlO() {
             {
               decision: 'Three client dependencies',
               because:
-                'Hand-writing drag-and-drop, popovers and motion cost real time. It bought a 119 kB gzipped bundle and no dependency I cannot fix myself.',
+                'Hand-writing drag-and-drop, popovers and motion cost real time. It bought a 162 kB gzipped bundle and no dependency I cannot fix myself.',
+            },
+            {
+              decision: 'Seven designs instead of a colour picker',
+              because:
+                'Takes away a setting customers asked for. Buys a board that is readable in every workspace, which is what they actually wanted when they asked.',
             },
           ]}
         />
