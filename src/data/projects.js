@@ -17,7 +17,7 @@ export const projects = [
     field: '--color-cobalt-field',
     onHue: '#ffffff',
     plateClass: 'bg-cobalt text-white',
-    liveUrl: 'https://task-manager-kappa-sable-65.vercel.app',
+    liveUrl: 'https://curl-o.brandkob.com',
     plateFacts: [
       { k: 'Progress model', v: 'Weighted' },
       { k: 'Tenancy', v: 'Per workspace' },
